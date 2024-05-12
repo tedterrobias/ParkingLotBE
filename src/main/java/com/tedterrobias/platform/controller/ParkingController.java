@@ -28,13 +28,11 @@ public class ParkingController
 
     @PostMapping(path = "start", produces = MediaType.APPLICATION_JSON_VALUE)
     public Parkings startParking(@RequestParam("vehicleType") VehicleEnum vehicleType) {
-        //should only include vehicle type
         return parkingService.startParkingEntry(vehicleType);
     }
 
     @PostMapping(path = "end", produces = MediaType.APPLICATION_JSON_VALUE)
     public Parkings endParking(@RequestParam("id") String id) {
-        //should only include vehicle type
         return parkingService.endParkingEntry(id);
     }
 
