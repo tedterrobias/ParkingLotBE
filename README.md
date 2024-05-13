@@ -1,6 +1,6 @@
 # ParkingLotBE
 Parking lot management back end application by Ted Terrobias. I started 
-this project on May 24, 2024. This application is my interpretation 
+this project on May 12, 2024. This application is my interpretation 
 of a parking lot application based on my personal experiences with paid parking. 
 A car enters a paid parking space, gets a ticket from a receptionist, 
 either a person or a machine. Then before exiting, 
