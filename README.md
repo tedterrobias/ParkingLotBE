@@ -1,9 +1,10 @@
 # ParkingLotBE
-Parking lot management back end application by Ted Terrobias. I started 
-this project on May 12, 2024. This application is my interpretation 
-of a parking lot application based on my personal experiences with paid parking. 
-A car enters a paid parking space, gets a ticket from a receptionist, 
-either a person or a machine. Then before exiting, 
+
+Parking lot management back end application by Ted Terrobias. I started
+this project on May 12, 2024. This application is my interpretation
+of a parking lot application based on my personal experiences with
+paid parking spaces. A car enters a paid parking space, gets a ticket
+from a receptionist, either a person or a machine. Then before exiting,
 the ticket is returned to the receptionist for payment.
 
 This is a _pet project_ of mine. Feel free to leave suggestions. Thanks.
@@ -12,7 +13,13 @@ This is a _pet project_ of mine. Feel free to leave suggestions. Thanks.
 - Email: tedterrobias@gmail.com
 - LinkedIn: [Ted Terrobias](https://www.linkedin.com/in/tedterrobias/)
 
-## Major Changes
+## Latest Changes
+
+### 1.1.0 (May 14, 2024)
+
+- Added ticket generation functionality upon start of parking.
+- Minor changes
+
 ### 1.0.0 (May 12, 2024)
 - Added core functionalities
   - start a single parking entry (by vehicle type)
@@ -23,15 +30,15 @@ This is a _pet project_ of mine. Feel free to leave suggestions. Thanks.
 
 ## Planned future updates
 - create parking entries manually
-    - JSON request (single and bulk)
-    - spreadsheet upload
-    - download spreadsheet template
+  - (single and bulk)
+  - spreadsheet upload
+  - download spreadsheet template
 - calculate earnings by date range
     - scheduled job (daily, from 12MN to 11:59PM)
     - send out email
-- print/generate single parking ticket
-    - pdf format
-    - QR code
+- ~~generate single parking ticket~~ :+1: **DONE**
+  - ~~pdf format~~
+  - ~~Barcode on ticket~~
 - periodical update of active parking fees
     - scheduled job
 - print/generate multiple parking info
@@ -42,6 +49,9 @@ This is a _pet project_ of mine. Feel free to leave suggestions. Thanks.
 - Loadable cards
 - unit and integration testing
   - test containers
+- Admin account
+  - login-logout
+- security improvements
 
 ## Minor changes
 ### 1.0.2 (May 13, 2024)

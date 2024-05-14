@@ -7,8 +7,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-@Document(collection = "parkings")
-public class Parkings
+@Document(collection = "parkingEntries")
+public class ParkingEntries
 {
     @Id
     private String id;
@@ -18,10 +18,10 @@ public class Parkings
     private LocalDateTime endParkTime;
     private boolean isActive;
 
-    public Parkings() {
+    public ParkingEntries() {
     }
 
-    public Parkings(String id, VehicleEnum vehicle, BigDecimal amount,
+    public ParkingEntries(String id, VehicleEnum vehicle, BigDecimal amount,
                     LocalDateTime startParkTime, LocalDateTime endParkTime, boolean isActive) {
         this.id = id;
         this.vehicle = vehicle;
