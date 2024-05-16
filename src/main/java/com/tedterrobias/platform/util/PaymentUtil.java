@@ -8,6 +8,9 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
 public class PaymentUtil {
+
+    private static final String CURRENCY = "PHP";
+    private static final String CURRENCY_DECIMALS = ".00";
     public static BigDecimal calculateParkingPayment(LocalDateTime startParkTime, LocalDateTime endParkTime,
                                                      VehicleEnum vehicleType)
     {
@@ -39,5 +42,10 @@ public class PaymentUtil {
             }
         }
         return totalAmount;
+    }
+
+    public static String formatToCurrency(BigDecimal amount)
+    {
+        return CURRENCY + " " + amount.toPlainString() + CURRENCY_DECIMALS;
     }
 }

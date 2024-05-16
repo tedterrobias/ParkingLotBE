@@ -15,20 +15,17 @@ This is a _pet project_ of mine. Feel free to leave suggestions. Thanks.
 
 ## Latest Changes
 
-### 1.1.0 (May 14, 2024)
+### 1.2.0 (May 16, 2024)
 
-- Added ticket generation functionality upon start of parking.
+- Added receipt generation upon end of parking
 - Minor changes
 
-### 1.0.0 (May 12, 2024)
-- Added core functionalities
-  - start a single parking entry (by vehicle type)
-  - end a single parking entry (by ID)
-  - get number of vacant parking spaces by vehicle type
-  - update parking entry _(partially implemented)_
+### 1.1.0 (May 14, 2024)
 
+- Added ticket generation functionality upon start of parking
+- Minor changes
 
-## Planned future updates
+## Future updates
 - create parking entries manually
   - (single and bulk)
   - spreadsheet upload
@@ -43,19 +40,29 @@ This is a _pet project_ of mine. Feel free to leave suggestions. Thanks.
     - scheduled job
 - print/generate multiple parking info
     - pdf format
-- Generate payment receipt
+- ~~Generate payment receipt~~ :+1: **DONE**
 - Apply discounts and promos
   - loyalty cards?
 - Loadable cards
 - unit and integration testing
   - test containers
-- Admin account
-  - login-logout
-- security improvements
+- other improvements
+  - security
+  - javadocs
+  - error handling _(controller advice, etc)_
 
-## Minor changes
+## Older changes
 ### 1.0.2 (May 13, 2024)
 - Added swagger descriptions per endpoint
 - updated readme.md
+
+### 1.0.0 (May 12, 2024)
+
+- Added core functionalities
+  - start a single parking entry (by vehicle type)
+  - end a single parking entry (by ID)
+  - get number of vacant parking spaces by vehicle type
+  - update parking entry _(partially implemented)_
+
 ### 1.0.1 (May 12, 2024)
 - bug fix
