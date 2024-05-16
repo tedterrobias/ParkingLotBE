@@ -1,5 +1,6 @@
 package com.tedterrobias.platform.model;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public class ParkingEntriesTicket
@@ -8,12 +9,20 @@ public class ParkingEntriesTicket
     private String vehicle;
     private LocalDateTime startParkTime;
 
+    private BigDecimal amount;
+
+    private LocalDateTime endParkTime;
+
     public ParkingEntriesTicket() { }
 
-    public ParkingEntriesTicket(String id, String vehicle, LocalDateTime startParkTime) {
+    public ParkingEntriesTicket(String id, String vehicle, LocalDateTime startParkTime, BigDecimal amount,
+                                LocalDateTime endParkTime)
+    {
         this.id = id;
         this.vehicle = vehicle;
         this.startParkTime = startParkTime;
+        this.amount = amount;
+        this.endParkTime = endParkTime;
     }
 
     public String getId() {
@@ -40,5 +49,23 @@ public class ParkingEntriesTicket
         this.startParkTime = startParkTime;
     }
 
+    public BigDecimal getAmount()
+    {
+        return amount;
+    }
 
+    public void setAmount(BigDecimal amount)
+    {
+        this.amount = amount;
+    }
+
+    public LocalDateTime getEndParkTime()
+    {
+        return endParkTime;
+    }
+
+    public void setEndParkTime(LocalDateTime endParkTime)
+    {
+        this.endParkTime = endParkTime;
+    }
 }

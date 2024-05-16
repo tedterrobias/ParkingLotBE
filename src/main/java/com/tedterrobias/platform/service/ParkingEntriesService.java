@@ -57,13 +57,14 @@ public class ParkingEntriesService
         parkingEntry.setAmount(BigDecimal.ZERO);
         parkingEntry.setActive(true);
 
-        ParkingEntries savedParkingEntry = mongoTemplate.save(parkingEntry);
+//        TODO: prevent parking start if parking is full
+
+        ParkingEntriesTicket ticket = ticketMapper.parkingEntriesToParkingEntriesTicket(
+            mongoTemplate.save(parkingEntry));
 
         Try.of(() -> {
             Document parkingTicket = new Document(PageSize.A7, 10, 10, 10, 10);
             PdfWriter pdfWriter = PdfWriter.getInstance(parkingTicket, response.getOutputStream());
-
-            ParkingEntriesTicket ticket = ticketMapper.parkingEntriesToParkingEntriesTicket(parkingEntry);
 
             Font fontBold = FontFactory.getFont(FontFactory.HELVETICA_BOLD);
             fontBold.setSize(15F);
@@ -91,10 +92,10 @@ public class ParkingEntriesService
         });
 
         response.setHeader("Content-Disposition",
-            "attachment; filename=" + savedParkingEntry.getId() + ".pdf");
+            "attachment; filename=" + ticket.getId() + ".pdf");
     }
 
-    public ParkingEntries endParkingEntry(String id)
+    public void endParkingEntry(String id, HttpServletResponse response)
     {
         ParkingEntries parkingEntry = findParkingEntryById(id);
         parkingEntry.setEndParkTime(LocalDateTime.now());
@@ -103,11 +104,45 @@ public class ParkingEntriesService
         parkingEntry.setAmount(PaymentUtil.calculateParkingPayment(
                 parkingEntry.getStartParkTime(), parkingEntry.getEndParkTime(), parkingEntry.getVehicle()));
 
+//        TODO: prevent parking termination by checking if active is already false, throw and return error.
+//        TODO: add penalty charges: 200 per night. lost Ticket 200
+//        TODO: add breakdown of charges [low priority]
         parkingEntry.setActive(false);
+
+        ParkingEntriesTicket ticket = ticketMapper.parkingEntriesToParkingEntriesTicket(
+            mongoTemplate.save(parkingEntry));
 
         log.info("end parking for id:{} {}", parkingEntry.getId(), parkingEntry);
 
-        return mongoTemplate.save(parkingEntry);
+
+        Try.of(() -> {
+            Document parkingTicket = new Document(PageSize.A7, 10, 10, 10, 10);
+            PdfWriter.getInstance(parkingTicket, response.getOutputStream());
+
+            Font fontBold = FontFactory.getFont(FontFactory.HELVETICA_BOLD);
+            fontBold.setSize(15F);
+
+            Font font = FontFactory.getFont(FontFactory.HELVETICA);
+            font.setSize(8F);
+
+            parkingTicket.open();
+            parkingTicket.add(new Paragraph("TNT Parking Corp.\n", fontBold));
+            parkingTicket.add(new Paragraph("\nRECEIPT \n", font));
+            parkingTicket.add(new Paragraph("\nStarting parking time: \n" +
+                DateUtil.formatDate(ticket.getStartParkTime()) + "\n", font));
+            parkingTicket.add(new Paragraph("\nEnd parking time: \n" +
+                DateUtil.formatDate(ticket.getEndParkTime()) + "\n", font));
+            parkingTicket.add(new Paragraph("\nAmount: \n"
+                + PaymentUtil.formatToCurrency(ticket.getAmount()) + "\n", font));
+
+            parkingTicket.add(new Paragraph("\nThank you come again!\n\n\n", font));
+
+            parkingTicket.close();
+            return parkingTicket;
+        });
+
+        response.setHeader("Content-Disposition",
+            "attachment; filename=" + ticket.getId() + ".pdf");
     }
 
     public ParkingEntries findParkingEntryById(String id)

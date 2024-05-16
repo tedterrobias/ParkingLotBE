@@ -40,11 +40,11 @@ public class ParkingEntriesController
         parkingEntriesService.startParkingEntry(vehicleType, response);
     }
 
-    @PostMapping(path = "end", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(path = "end", produces = MediaType.APPLICATION_PDF_VALUE)
     @Operation(summary = "end active parking by ID")
-    public ParkingEntries endParking(@RequestParam("id") String id)
+    public void endParking(@RequestParam("id") String id, HttpServletResponse response)
     {
-        return parkingEntriesService.endParkingEntry(id);
+        parkingEntriesService.endParkingEntry(id, response);
     }
 
     @PatchMapping(produces = MediaType.APPLICATION_JSON_VALUE)

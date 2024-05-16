@@ -81,7 +81,7 @@ public class ParkingEntries
 
     @Override
     public String toString() {
-        return "Parkings{" +
+        return "ParkingEntries{" +
                 ", vehicle=" + vehicle +
                 ", amount=" + amount +
                 ", startParkTime=" + startParkTime +

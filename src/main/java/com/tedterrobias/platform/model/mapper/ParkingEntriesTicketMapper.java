@@ -9,5 +9,5 @@ import org.mapstruct.Mapping;
 public interface ParkingEntriesTicketMapper {
 
     @Mapping(target = "vehicle", expression = "java(parkingEntries.getVehicle().getVehicleType())")
-    public ParkingEntriesTicket parkingEntriesToParkingEntriesTicket(ParkingEntries parkingEntries);
+    ParkingEntriesTicket parkingEntriesToParkingEntriesTicket(ParkingEntries parkingEntries);
 }
